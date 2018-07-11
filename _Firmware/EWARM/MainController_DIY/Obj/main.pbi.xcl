@@ -1,17 +1,17 @@
-"F:\KisWire\sensors\Pyrometer\_Firmware\Src\main.c"
+"F:\KWSA\sensors\Pyrometer\_Firmware\Src\main.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -I
-F:\KisWire\sensors\Pyrometer\_Firmware\EWARM/../Inc
+F:\KWSA\sensors\Pyrometer\_Firmware\EWARM/../Inc
 -I
-F:\KisWire\sensors\Pyrometer\_Firmware\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc
+F:\KWSA\sensors\Pyrometer\_Firmware\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc
 -I
-F:\KisWire\sensors\Pyrometer\_Firmware\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy
+F:\KWSA\sensors\Pyrometer\_Firmware\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy
 -I
-F:\KisWire\sensors\Pyrometer\_Firmware\EWARM/../Drivers/CMSIS/Device/ST/STM32F1xx/Include
+F:\KWSA\sensors\Pyrometer\_Firmware\EWARM/../Drivers/CMSIS/Device/ST/STM32F1xx/Include
 -I
-F:\KisWire\sensors\Pyrometer\_Firmware\EWARM/../Drivers/CMSIS/Include
+F:\KWSA\sensors\Pyrometer\_Firmware\EWARM/../Drivers/CMSIS/Include
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\CMSIS\Core\Include
 -I
@@ -21,15 +21,15 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc\c
 -I
-F:\KisWire\sensors\Pyrometer\_Firmware\Inc
+F:\KWSA\sensors\Pyrometer\_Firmware\Inc
 -I
-F:\KisWire\sensors\Pyrometer\_Firmware\Drivers\STM32F1xx_HAL_Driver\Inc
+F:\KWSA\sensors\Pyrometer\_Firmware\Drivers\STM32F1xx_HAL_Driver\Inc
 -I
-F:\KisWire\sensors\Pyrometer\_Firmware\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy
+F:\KWSA\sensors\Pyrometer\_Firmware\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy
 -I
-F:\KisWire\sensors\Pyrometer\_Firmware\Drivers\CMSIS\Device\ST\STM32F1xx\Include
+F:\KWSA\sensors\Pyrometer\_Firmware\Drivers\CMSIS\Device\ST\STM32F1xx\Include
 -I
-F:\KisWire\sensors\Pyrometer\_Firmware\Drivers\CMSIS\Include
+F:\KWSA\sensors\Pyrometer\_Firmware\Drivers\CMSIS\Include
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\CMSIS\Core\Include
 -I

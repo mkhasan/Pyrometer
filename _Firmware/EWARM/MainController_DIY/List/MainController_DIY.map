@@ -1,40 +1,40 @@
 ###############################################################################
 #
-# IAR ELF Linker V8.22.1.15669/W32 for ARM                11/Jul/2018  13:19:50
+# IAR ELF Linker V8.22.1.15669/W32 for ARM                11/Jul/2018  14:24:44
 # Copyright 2007-2018 IAR Systems AB.
 #
 #    Output file  =  
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Exe\MainController_DIY.out
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Exe\MainController_DIY.out
 #    Map file     =  
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\List\MainController_DIY.map
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\List\MainController_DIY.map
 #    Command line =  
-#        -f C:\Users\MKHASA~1\AppData\Local\Temp\EWD056.tmp
-#        (F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\main.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\startup_stm32f103xe.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_adc.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_adc_ex.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_cortex.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_dma.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_flash.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_flash_ex.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_gpio.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_gpio_ex.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_msp.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_pwr.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_rcc.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_rcc_ex.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_tim.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_tim_ex.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_uart.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_it.o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\system_stm32f1xx.o
+#        -f C:\Users\MKHASA~1\AppData\Local\Temp\EW31C2.tmp
+#        (F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\main.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\startup_stm32f103xe.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_adc.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_adc_ex.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_cortex.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_dma.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_flash.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_flash_ex.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_gpio.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_gpio_ex.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_msp.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_pwr.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_rcc.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_rcc_ex.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_tim.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_tim_ex.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_hal_uart.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\stm32f1xx_it.o
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj\system_stm32f1xx.o
 #        --redirect _Printf=_PrintfFull --redirect _Scanf=_ScanfFull -o
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Exe\MainController_DIY.out
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Exe\MainController_DIY.out
 #        --map
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\List\MainController_DIY.map
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\List\MainController_DIY.map
 #        --config
-#        F:\KisWire\sensors\Pyrometer\_Firmware\EWARM/stm32f103xe_flash.icf
+#        F:\KWSA\sensors\Pyrometer\_Firmware\EWARM/stm32f103xe_flash.icf
 #        --semihosting --entry __iar_program_start --vfe --text_out locale)
 #
 ###############################################################################
@@ -75,7 +75,7 @@ initialize by copy { rw };
   .intvec            ro code  0x08000000   0x130  startup_stm32f103xe.o [1]
                             - 0x08000130   0x130
 
-"P1":                                     0x1224
+"P1":                                     0x1220
   .text              ro code  0x08000130   0x6bc  stm32f1xx_hal_rcc.o [1]
   .text              ro code  0x080007ec     0xc  stm32f1xx_hal.o [1]
   .text              ro code  0x080007f8    0x28  stm32f1xx_hal.o [1]
@@ -89,22 +89,23 @@ initialize by copy { rw };
   .text              ro code  0x08000ef8   0x124  stm32f1xx_hal_rcc_ex.o [1]
   .text              ro code  0x0800101c    0x98  stm32f1xx_hal_msp.o [1]
   .text              ro code  0x080010b4    0x68  system_stm32f1xx.o [1]
-  .rodata            const    0x0800111c    0x34  main.o [1]
-  .text              ro code  0x08001150    0x30  stm32f1xx_it.o [1]
-  .text              ro code  0x08001180    0x10  stm32f1xx_hal.o [1]
-  .text              ro code  0x08001190    0x2c  copy_init3.o [4]
-  .text              ro code  0x080011bc    0x28  data_init.o [4]
-  .iar.init_table    const    0x080011e4    0x14  - Linker created -
-  .text              ro code  0x080011f8    0x1e  cmain.o [4]
-  .text              ro code  0x08001216     0x4  low_level_init.o [3]
-  .text              ro code  0x0800121a     0x4  exit.o [3]
-  .text              ro code  0x08001220     0xa  cexit.o [4]
-  .text              ro code  0x0800122c    0x14  exit.o [5]
-  .rodata            const    0x08001240    0x10  stm32f1xx_hal_rcc.o [1]
-  .rodata            const    0x08001250    0x10  system_stm32f1xx.o [1]
-  .text              ro code  0x08001260    0x10  startup_stm32f103xe.o [1]
-  Initializer bytes  const    0x08001270    0x10  <for P2-1>
-  .text              ro code  0x08001280     0xc  cstartup_M.o [4]
+  .rodata            const    0x0800111c    0x30  main.o [1]
+  .text              ro code  0x0800114c    0x30  stm32f1xx_it.o [1]
+  .text              ro code  0x0800117c    0x10  stm32f1xx_hal.o [1]
+  .text              ro code  0x0800118c    0x2c  copy_init3.o [4]
+  .text              ro code  0x080011b8    0x28  data_init.o [4]
+  .iar.init_table    const    0x080011e0    0x14  - Linker created -
+  .text              ro code  0x080011f4    0x1e  cmain.o [4]
+  .text              ro code  0x08001212     0x4  low_level_init.o [3]
+  .text              ro code  0x08001216     0x4  exit.o [3]
+  .text              ro code  0x0800121c     0xa  cexit.o [4]
+  .text              ro code  0x08001228    0x14  exit.o [5]
+  .rodata            const    0x0800123c    0x10  stm32f1xx_hal_rcc.o [1]
+  .rodata            const    0x0800124c    0x10  system_stm32f1xx.o [1]
+  .text              ro code  0x0800125c    0x10  startup_stm32f103xe.o [1]
+  Initializer bytes  const    0x0800126c    0x10  <for P2-1>
+  .text              ro code  0x0800127c     0xc  cstartup_M.o [4]
+  .text              ro code  0x08001288     0x4  startup_stm32f103xe.o [1]
   .text              ro code  0x0800128c     0x4  startup_stm32f103xe.o [1]
   .text              ro code  0x08001290     0x4  startup_stm32f103xe.o [1]
   .text              ro code  0x08001294     0x4  startup_stm32f103xe.o [1]
@@ -154,9 +155,8 @@ initialize by copy { rw };
   .text              ro code  0x08001344     0x4  startup_stm32f103xe.o [1]
   .text              ro code  0x08001348     0x4  startup_stm32f103xe.o [1]
   .text              ro code  0x0800134c     0x4  startup_stm32f103xe.o [1]
-  .text              ro code  0x08001350     0x4  startup_stm32f103xe.o [1]
-  .rodata            const    0x08001354     0x0  copy_init3.o [4]
-                            - 0x08001354  0x1224
+  .rodata            const    0x08001350     0x0  copy_init3.o [4]
+                            - 0x08001350  0x1220
 
 "P2", part 1 of 2:                          0x10
   P2-1                        0x20000000    0x10  <Init block>
@@ -180,7 +180,7 @@ initialize by copy { rw };
           -------     ----
 Copy (__iar_copy_init3)
     1 source range, total size 0x10:
-          0x08001270  0x10
+          0x0800126c  0x10
     1 destination range, total size 0x10:
           0x20000000  0x10
 
@@ -192,8 +192,8 @@ Copy (__iar_copy_init3)
 
     Module                  ro code  ro data  rw data
     ------                  -------  -------  -------
-F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj: [1]
-    main.o                      520       60        8
+F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj: [1]
+    main.o                      520       56        8
     startup_stm32f103xe.o       520
     stm32f1xx_hal.o             138        4        4
     stm32f1xx_hal_cortex.o      334
@@ -204,7 +204,7 @@ F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj: [1]
     stm32f1xx_it.o               48
     system_stm32f1xx.o          104       20        4
     -------------------------------------------------
-    Total:                    4 520      102       16
+    Total:                    4 520       98       16
 
 command line: [2]
     -------------------------------------------------
@@ -234,7 +234,7 @@ shb_l.a: [5]
     Gaps                          8
     Linker created                        20    1 024
 -----------------------------------------------------
-    Grand Total:              4 826      122    1 040
+    Grand Total:              4 826      118    1 040
 
 
 *******************************************************************************
@@ -243,22 +243,22 @@ shb_l.a: [5]
 
 Entry                      Address   Size  Type      Object
 -----                      -------   ----  ----      ------
-.iar.init_table$$Base   0x080011e4          --   Gb  - Linker created -
-.iar.init_table$$Limit  0x080011f8          --   Gb  - Linker created -
-?main                   0x080011f9         Code  Gb  cmain.o [4]
-ADC1_2_IRQHandler       0x0800116f    0x2  Code  Gb  stm32f1xx_it.o [1]
-AHBPrescTable           0x08001250   0x10  Data  Gb  system_stm32f1xx.o [1]
-BusFault_Handler        0x08001157    0x2  Code  Gb  stm32f1xx_it.o [1]
+.iar.init_table$$Base   0x080011e0          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x080011f4          --   Gb  - Linker created -
+?main                   0x080011f5         Code  Gb  cmain.o [4]
+ADC1_2_IRQHandler       0x0800116b    0x2  Code  Gb  stm32f1xx_it.o [1]
+AHBPrescTable           0x0800124c   0x10  Data  Gb  system_stm32f1xx.o [1]
+BusFault_Handler        0x08001153    0x2  Code  Gb  stm32f1xx_it.o [1]
 CSTACK$$Base            0x20000010          --   Gb  - Linker created -
 CSTACK$$Limit           0x20000410          --   Gb  - Linker created -
 DMA1_Channel1_IRQHandler
-                        0x0800116d    0x2  Code  Gb  stm32f1xx_it.o [1]
-DebugMon_Handler        0x0800115d    0x2  Code  Gb  stm32f1xx_it.o [1]
+                        0x08001169    0x2  Code  Gb  stm32f1xx_it.o [1]
+DebugMon_Handler        0x08001159    0x2  Code  Gb  stm32f1xx_it.o [1]
 HAL_Delay               0x08000ed9   0x1e  Code  Wk  stm32f1xx_hal.o [1]
 HAL_GPIO_Init           0x080009f9  0x24c  Code  Gb  stm32f1xx_hal_gpio.o [1]
 HAL_GPIO_WritePin       0x08000c45   0x1a  Code  Gb  stm32f1xx_hal_gpio.o [1]
 HAL_GetTick             0x080007ed    0xc  Code  Wk  stm32f1xx_hal.o [1]
-HAL_IncTick             0x08001181   0x10  Code  Wk  stm32f1xx_hal.o [1]
+HAL_IncTick             0x0800117d   0x10  Code  Wk  stm32f1xx_hal.o [1]
 HAL_Init                0x08000eb1   0x22  Code  Gb  stm32f1xx_hal.o [1]
 HAL_InitTick            0x080007f9   0x28  Code  Wk  stm32f1xx_hal.o [1]
 HAL_MspInit             0x0800101d   0x90  Code  Gb  stm32f1xx_hal_msp.o [1]
@@ -276,65 +276,65 @@ HAL_SYSTICK_CLKSourceConfig
                         0x080009af   0x20  Code  Gb  stm32f1xx_hal_cortex.o [1]
 HAL_SYSTICK_Config      0x080009a3    0xc  Code  Gb  stm32f1xx_hal_cortex.o [1]
 HAL_SYSTICK_IRQHandler  0x080009ed    0x8  Code  Gb  stm32f1xx_hal_cortex.o [1]
-HardFault_Handler       0x08001153    0x2  Code  Gb  stm32f1xx_it.o [1]
+HardFault_Handler       0x0800114f    0x2  Code  Gb  stm32f1xx_it.o [1]
 MX_GPIO_Init            0x08000dff   0x9a  Code  Gb  main.o [1]
-MemManage_Handler       0x08001155    0x2  Code  Gb  stm32f1xx_it.o [1]
-NMI_Handler             0x08001151    0x2  Code  Gb  stm32f1xx_it.o [1]
+MemManage_Handler       0x08001151    0x2  Code  Gb  stm32f1xx_it.o [1]
+NMI_Handler             0x0800114d    0x2  Code  Gb  stm32f1xx_it.o [1]
 NVIC_EncodePriority     0x080008fb   0x42  Code  Lc  stm32f1xx_hal_cortex.o [1]
 NVIC_GetPriorityGrouping
                         0x080008c5    0xa  Code  Lc  stm32f1xx_hal_cortex.o [1]
 NVIC_SetPriority        0x080008cf   0x2c  Code  Lc  stm32f1xx_hal_cortex.o [1]
 NVIC_SetPriorityGrouping
                         0x080008a9   0x1c  Code  Lc  stm32f1xx_hal_cortex.o [1]
-PendSV_Handler          0x0800115f    0x2  Code  Gb  stm32f1xx_it.o [1]
+PendSV_Handler          0x0800115b    0x2  Code  Gb  stm32f1xx_it.o [1]
 RCC_Delay               0x08000785   0x26  Code  Lc  stm32f1xx_hal_rcc.o [1]
-Region$$Table$$Base     0x080011e4          --   Gb  - Linker created -
-Region$$Table$$Limit    0x080011f8          --   Gb  - Linker created -
-SVC_Handler             0x0800115b    0x2  Code  Gb  stm32f1xx_it.o [1]
+Region$$Table$$Base     0x080011e0          --   Gb  - Linker created -
+Region$$Table$$Limit    0x080011f4          --   Gb  - Linker created -
+SVC_Handler             0x08001157    0x2  Code  Gb  stm32f1xx_it.o [1]
 SysTick_Config          0x0800093d   0x30  Code  Lc  stm32f1xx_hal_cortex.o [1]
-SysTick_Handler         0x08001161    0xc  Code  Gb  stm32f1xx_it.o [1]
+SysTick_Handler         0x0800115d    0xc  Code  Gb  stm32f1xx_it.o [1]
 SystemClock_Config      0x08000d55   0xa8  Code  Gb  main.o [1]
 SystemCoreClock         0x20000000    0x4  Data  Gb  system_stm32f1xx.o [1]
 SystemInit              0x080010b5   0x4e  Code  Gb  system_stm32f1xx.o [1]
-TIM2_IRQHandler         0x08001171    0x2  Code  Gb  stm32f1xx_it.o [1]
-TIM3_IRQHandler         0x08001173    0x2  Code  Gb  stm32f1xx_it.o [1]
-TIM5_IRQHandler         0x0800117b    0x2  Code  Gb  stm32f1xx_it.o [1]
-TIM6_IRQHandler         0x0800117d    0x2  Code  Gb  stm32f1xx_it.o [1]
-TIM7_IRQHandler         0x0800117f    0x2  Code  Gb  stm32f1xx_it.o [1]
-TIM8_UP_IRQHandler      0x08001179    0x2  Code  Gb  stm32f1xx_it.o [1]
-USART1_IRQHandler       0x08001175    0x2  Code  Gb  stm32f1xx_it.o [1]
-USART2_IRQHandler       0x08001177    0x2  Code  Gb  stm32f1xx_it.o [1]
-UsageFault_Handler      0x08001159    0x2  Code  Gb  stm32f1xx_it.o [1]
+TIM2_IRQHandler         0x0800116d    0x2  Code  Gb  stm32f1xx_it.o [1]
+TIM3_IRQHandler         0x0800116f    0x2  Code  Gb  stm32f1xx_it.o [1]
+TIM5_IRQHandler         0x08001177    0x2  Code  Gb  stm32f1xx_it.o [1]
+TIM6_IRQHandler         0x08001179    0x2  Code  Gb  stm32f1xx_it.o [1]
+TIM7_IRQHandler         0x0800117b    0x2  Code  Gb  stm32f1xx_it.o [1]
+TIM8_UP_IRQHandler      0x08001175    0x2  Code  Gb  stm32f1xx_it.o [1]
+USART1_IRQHandler       0x08001171    0x2  Code  Gb  stm32f1xx_it.o [1]
+USART2_IRQHandler       0x08001173    0x2  Code  Gb  stm32f1xx_it.o [1]
+UsageFault_Handler      0x08001155    0x2  Code  Gb  stm32f1xx_it.o [1]
 _Error_Handler          0x08000dfd    0x2  Code  Gb  main.o [1]
 __aeabi_memcpy4         0x08000821         Code  Gb  ABImemcpy.o [4]
 __aeabi_memcpy8         0x08000821         Code  Gb  ABImemcpy.o [4]
-__cmain                 0x080011f9         Code  Gb  cmain.o [4]
-__exit                  0x0800122d   0x14  Code  Gb  exit.o [5]
-__iar_copy_init3        0x08001191   0x2c  Code  Gb  copy_init3.o [4]
-__iar_data_init3        0x080011bd   0x28  Code  Gb  data_init.o [4]
-__iar_program_start     0x08001281         Code  Gb  cstartup_M.o [4]
+__cmain                 0x080011f5         Code  Gb  cmain.o [4]
+__exit                  0x08001229   0x14  Code  Gb  exit.o [5]
+__iar_copy_init3        0x0800118d   0x2c  Code  Gb  copy_init3.o [4]
+__iar_data_init3        0x080011b9   0x28  Code  Gb  data_init.o [4]
+__iar_program_start     0x0800127d         Code  Gb  cstartup_M.o [4]
 __iar_systems$$module {Abs}
                         0x00000001         Data  Gb  command line/config [2]
-__low_level_init        0x08001217    0x4  Code  Gb  low_level_init.o [3]
+__low_level_init        0x08001213    0x4  Code  Gb  low_level_init.o [3]
 __vector_table          0x08000000         Data  Gb  startup_stm32f103xe.o [1]
-_call_main              0x08001205         Code  Gb  cmain.o [4]
-_exit                   0x08001221         Code  Gb  cexit.o [4]
-_main                   0x08001213         Code  Gb  cmain.o [4]
-exit                    0x0800121b    0x4  Code  Gb  exit.o [3]
+_call_main              0x08001201         Code  Gb  cmain.o [4]
+_exit                   0x0800121d         Code  Gb  cexit.o [4]
+_main                   0x0800120f         Code  Gb  cmain.o [4]
+exit                    0x08001217    0x4  Code  Gb  exit.o [3]
 main                    0x08000ca9   0xac  Code  Gb  main.o [1]
 ret                     0x20000004    0x4  Data  Lc  main.o [1]
 uwTick                  0x2000000c    0x4  Data  Gb  stm32f1xx_hal.o [1]
 value                   0x20000008    0x4  Data  Lc  main.o [1]
 
 
-[1] = F:\KisWire\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj
+[1] = F:\KWSA\sensors\Pyrometer\_Firmware\EWARM\MainController_DIY\Obj
 [2] = command line
 [3] = dl7M_tlf.a
 [4] = rt7M_tl.a
 [5] = shb_l.a
 
   4 826 bytes of readonly  code memory
-    122 bytes of readonly  data memory
+    118 bytes of readonly  data memory
   1 040 bytes of readwrite data memory
 
 Errors: none

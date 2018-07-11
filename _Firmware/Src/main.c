@@ -1,6 +1,6 @@
 
 #include "stm32f1xx_hal.h"
-
+#include "config.h"
 
 void SystemClock_Config(void);
 void _Error_Handler(char * file, int line);
@@ -40,8 +40,8 @@ int main() {
     }
     */
     
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
     
@@ -138,12 +138,12 @@ void MX_GPIO_Init(void)
   //| GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11,
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG1_CTRL_PIN | DIG2_CTRL_PIN | DIG3_CTRL_PIN | DIG4_CTRL_PIN, GPIO_PIN_RESET);
 
-  GPIO_InitStruct.Pin = GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6;
+  GPIO_InitStruct.Pin = DIG1_CTRL_PIN | DIG2_CTRL_PIN | DIG3_CTRL_PIN | DIG4_CTRL_PIN;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(DIGIT_CTRL_PORT, &GPIO_InitStruct);
   
   
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_RESET);
