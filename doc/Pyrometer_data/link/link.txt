@@ -1,0 +1,3 @@
+https://os.mbed.com/components/MLX90614-I2C-Infrared-Thermometer/
+
+https://forum.mikroe.com/viewtopic.php?f=178&t=58670

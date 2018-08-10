@@ -40,7 +40,7 @@
 #include "stm32f1xx_hal.h"
 #include "config.h"
     
-
+extern DMA_HandleTypeDef g_DmaHandle;
 
 extern void _Error_Handler(char *, int);
 /* USER CODE BEGIN 0 */
@@ -91,6 +91,35 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
   if(hadc->Instance==ADC1)
   {
     
+    __HAL_RCC_DMA1_CLK_ENABLE();
+    __HAL_RCC_ADC1_CLK_ENABLE();
+  
+    GPIO_InitStruct.Pin = PYROMETER_PIN | GPIO_PIN_0 | GPIO_PIN_1;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull= GPIO_NOPULL;
+    HAL_GPIO_Init(PYROMETER_PORT, &GPIO_InitStruct);
+    
+    g_DmaHandle.Instance = DMA1_Channel1;
+    g_DmaHandle.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    g_DmaHandle.Init.PeriphInc = DMA_PINC_DISABLE;
+    g_DmaHandle.Init.MemInc = DMA_MINC_ENABLE;
+    g_DmaHandle.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
+    g_DmaHandle.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+    g_DmaHandle.Init.Mode = DMA_CIRCULAR;
+    g_DmaHandle.Init.Priority = DMA_PRIORITY_LOW;
+    
+
+    if (HAL_DMA_Init(&g_DmaHandle) != HAL_OK)
+    {
+      _Error_Handler(__FILE__, __LINE__);
+    }
+    
+    __HAL_LINKDMA(hadc, DMA_Handle, g_DmaHandle);
+
+
+    HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+      
+    HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
    
     
   }
@@ -104,6 +133,10 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
   //GPIO_InitTypeDef GPIO_InitStruct;
   if(hadc->Instance==ADC1)
   {
+   __HAL_RCC_ADC1_CLK_DISABLE();
+    HAL_GPIO_DeInit(PYROMETER_PORT, PYROMETER_PIN);
+    HAL_DMA_DeInit(hadc->DMA_Handle);
+    HAL_NVIC_DisableIRQ(DMA1_Channel1_IRQn);
 
   }
 
@@ -489,3 +522,62 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
   */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
+{
+
+  GPIO_InitTypeDef GPIO_InitStruct;
+  if(hi2c->Instance==I2C2)
+  {
+    __HAL_RCC_I2C2_CLK_ENABLE();
+  /* USER CODE BEGIN I2C2_MspInit 0 */
+
+  /* USER CODE END I2C2_MspInit 0 */
+  
+    /**I2C2 GPIO Configuration    
+    PB10     ------> I2C2_SCL
+    PB11     ------> I2C2_SDA 
+    */
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    
+    
+    GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_11;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    //GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+    /* Peripheral clock enable */
+    
+  /* USER CODE BEGIN I2C2_MspInit 1 */
+
+  /* USER CODE END I2C2_MspInit 1 */
+  }
+
+}
+
+void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
+{
+
+  if(hi2c->Instance==I2C2)
+  {
+  /* USER CODE BEGIN I2C2_MspDeInit 0 */
+
+  /* USER CODE END I2C2_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_I2C2_CLK_DISABLE();
+  
+    /**I2C2 GPIO Configuration    
+    PB10     ------> I2C2_SCL
+    PB11     ------> I2C2_SDA 
+    */
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_10|GPIO_PIN_11);
+
+  /* USER CODE BEGIN I2C2_MspDeInit 1 */
+
+  /* USER CODE END I2C2_MspDeInit 1 */
+  }
+
+}
+

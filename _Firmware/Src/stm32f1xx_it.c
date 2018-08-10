@@ -43,6 +43,9 @@
 //extern DMA_HandleTypeDef hdma_adc1;
 //extern ADC_HandleTypeDef hadc1;
 
+extern DMA_HandleTypeDef g_DmaHandle;    
+extern ADC_HandleTypeDef g_AdcHandle;
+extern TIM_HandleTypeDef htim2;    
 /******************************************************************************/
 /*            Cortex-M3 Processor Interruption and Exception Handlers         */ 
 /******************************************************************************/
@@ -194,6 +197,8 @@ void DMA1_Channel1_IRQHandler(void)
 
   /* USER CODE END DMA1_Channel1_IRQn 0 */
  
+  HAL_DMA_IRQHandler(&g_DmaHandle);
+  
   /* USER CODE BEGIN DMA1_Channel1_IRQn 1 */
 
   /* USER CODE END DMA1_Channel1_IRQn 1 */
@@ -207,6 +212,8 @@ void ADC1_2_IRQHandler(void)
   /* USER CODE BEGIN ADC1_2_IRQn 0 */
 
   /* USER CODE END ADC1_2_IRQn 0 */
+  
+  HAL_ADC_IRQHandler(&g_AdcHandle);
  
   /* USER CODE BEGIN ADC1_2_IRQn 1 */
 
@@ -221,6 +228,8 @@ void TIM2_IRQHandler(void)
   /* USER CODE BEGIN TIM2_IRQn 0 */
 
   /* USER CODE END TIM2_IRQn 0 */
+  
+  HAL_TIM_IRQHandler(&htim2);
  
   /* USER CODE BEGIN TIM2_IRQn 1 */
 

@@ -1,0 +1,326 @@
+MPASM  5.06                      BLOAD_PM.ASM   10-15-2007  15:16:48         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 
+                      00002                                                         SUBTITLE "Uart bootloader firmware"
+                      00003 
+                      00004 Boot    code    0x00
+                      00005 
+000000 D00C           00006         DATA 0xD00C        ;0C , D0
+000002 D0EE           00007         DATA 0xD0EE        ;EE , D0
+000004 FFFF           00008         DATA 0xFFFF        ;FF , FF
+000006 FFFF           00009         DATA 0xFFFF        ;FF , FF
+000008 D0FF           00010         DATA 0xD0FF        ;FF , D0
+00000A BE82           00011         DATA 0xBE82        ;82 , BE
+00000C D0F4           00012         DATA 0xD0F4        ;F4 , D0
+00000E 0004           00013         DATA 0x0004        ;04 , 00
+000010 AE82           00014         DATA 0xAE82        ;82 , AE
+000012 D7FE           00015         DATA 0xD7FE        ;FE , D7
+000014 0012           00016         DATA 0x0012        ;12 , 00
+000016 FFFF           00017         DATA 0xFFFF        ;FF , FF
+000018 D0FF           00018         DATA 0xD0FF        ;FF , D0
+00001A 6AA6           00019         DATA 0x6AA6        ;A6 , 6A
+00001C 68A9           00020         DATA 0x68A9        ;A9 , 68
+00001E 68AA           00021         DATA 0x68AA        ;AA , 68
+000020 80A6           00022         DATA 0x80A6        ;A6 , 80
+000022 4AA8           00023     DATA 0x4AA8        ;A8 , 4A
+000024 D005           00024         DATA 0xD005        ;05 , D0
+000026 4CA8           00025         DATA 0x4CA8        ;A8 , 4C
+000028 D0EB           00026         DATA 0xD0EB        ;EB , D0
+00002A 6E06           00027         DATA 0x6E06        ;06 , 6E
+00002C 0E31           00028         DATA 0x0E31        ;31 , 0E
+00002E 6ECD           00029         DATA 0x6ECD        ;CD , 6E
+000030 9C94           00030         DATA 0x9C94        ;94 , 9C
+000032 0E90           00031         DATA 0x0E90        ;90 , 0E
+000034 6EAB           00032         DATA 0x6EAB        ;AB , 6E
+000036 0E26           00033         DATA 0x0E26        ;26 , 0E
+000038 6EAC           00034         DATA 0x6EAC        ;AC , 6E
+00003A 98AB           00035         DATA 0x98AB        ;AB , 98
+00003C 0E03           00036         DATA 0x0E03        ;03 , 0E
+00003E 6ED5           00037         DATA 0x6ED5        ;D5 , 6E
+000040 6AD7           00038         DATA 0x6AD7        ;D7 , 6A
+000042 6AD6           00039         DATA 0x6AD6        ;D6 , 6A
+000044 D8D8           00040         DATA 0xD8D8        ;D8 , D8
+000046 8ED5           00041         DATA 0x8ED5        ;D5 , 8E
+000048 D8D6           00042         DATA 0xD8D6        ;D6 , D8
+00004A 9ED5           00043         DATA 0x9ED5        ;D5 , 9E
+00004C CFD6           00044         DATA 0xCFD6        ;D6 , CF
+00004E F003           00045         DATA 0xF003        ;03 , F0
+000050 32D7           00046         DATA 0x32D7        ;D7 , 32
+000052 3203           00047         DATA 0x3203        ;03 , 32
+000054 A0D8           00048         DATA 0xA0D8        ;D8 , A0
+000056 0603           00049         DATA 0x0603        ;03 , 06
+000058 C003           00050         DATA 0xC003        ;03 , C0
+00005A FFAF           00051         DATA 0xFFAF        ;AF , FF
+00005C 88AB           00052         DATA 0x88AB        ;AB , 88
+00005E 50AE           00053         DATA 0x50AE        ;AE , 50
+MPASM  5.06                      BLOAD_PM.ASM   10-15-2007  15:16:48         PAGE  2
+
+Uart bootloader firmware
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000060 50AE           00054         DATA 0x50AE        ;AE , 50
+000062 D8B6           00055         DATA 0xD8B6        ;B6 , D8
+000064 0A0F           00056         DATA 0x0A0F        ;0F , 0A
+000066 E1E9           00057         DATA 0xE1E9        ;E9 , E1
+000068 EE00           00058         DATA 0xEE00        ;00 , EE
+00006A F008           00059         DATA 0xF008        ;08 , F0
+00006C 6A00           00060         DATA 0x6A00        ;00 , 6A
+00006E 6A01           00061         DATA 0x6A01        ;01 , 6A
+000070 D8AF           00062         DATA 0xD8AF        ;AF , D8
+000072 0A0F           00063         DATA 0x0A0F        ;0F , 0A
+000074 E0F6           00064         DATA 0xE0F6        ;F6 , E0
+000076 5004           00065         DATA 0x5004        ;04 , 50
+000078 0A04           00066         DATA 0x0A04        ;04 , 0A
+00007A E00A           00067         DATA 0xE00A        ;0A , E0
+00007C 5004           00068         DATA 0x5004        ;04 , 50
+00007E 0A05           00069         DATA 0x0A05        ;05 , 0A
+000080 E101           00070         DATA 0xE101        ;01 , E1
+000082 D8A6           00071         DATA 0xD8A6        ;A6 , D8
+000084 5004           00072         DATA 0x5004        ;04 , 50
+000086 2600           00073         DATA 0x2600        ;00 , 26
+000088 6EEE           00074         DATA 0x6EEE        ;EE , 6E
+00008A 4E01           00075         DATA 0x4E01        ;01 , 4E
+00008C D7D6           00076         DATA 0xD7D6        ;D6 , D7
+00008E D7F0           00077         DATA 0xD7F0        ;F0 , D7
+000090 5200           00078         DATA 0x5200        ;00 , 52
+000092 E1D3           00079         DATA 0xE1D3        ;D3 , E1
+000094 90CD           00080         DATA 0x90CD        ;CD , 90
+000096 500A           00081         DATA 0x500A        ;0A , 50
+000098 6EF6           00082         DATA 0x6EF6        ;F6 , 6E
+00009A 6EA9           00083         DATA 0x6EA9        ;A9 , 6E
+00009C 500B           00084         DATA 0x500B        ;0B , 50
+00009E 6EF7           00085         DATA 0x6EF7        ;F7 , 6E
+0000A0 6EAA           00086         DATA 0x6EAA        ;AA , 6E
+0000A2 C00C           00087         DATA 0xC00C        ;0C , C0
+0000A4 FFF8           00088         DATA 0xFFF8        ;F8 , FF
+0000A6 EE00           00089         DATA 0xEE00        ;00 , EE
+0000A8 F00D           00090         DATA 0xF00D        ;0D , F0
+0000AA 5009           00091         DATA 0x5009        ;09 , 50
+0000AC 6E01           00092         DATA 0x6E01        ;01 , 6E
+0000AE B4D8           00093         DATA 0xB4D8        ;D8 , B4
+0000B0 00FF           00094         DATA 0x00FF        ;FF , 00
+0000B2 5008           00095         DATA 0x5008        ;08 , 50
+0000B4 0808           00096         DATA 0x0808        ;08 , 08
+0000B6 E3C1           00097         DATA 0xE3C1        ;C1 , E3
+0000B8 6AFA           00098         DATA 0x6AFA        ;FA , 6A
+0000BA 6AFB           00099         DATA 0x6AFB        ;FB , 6A
+0000BC 4408           00100         DATA 0x4408        ;08 , 44
+0000BE 26F9           00101         DATA 0x26F9        ;F9 , 26
+0000C0 D008           00102         DATA 0xD008        ;08 , D0
+0000C2 D01E           00103         DATA 0xD01E        ;1E , D0
+0000C4 D025           00104         DATA 0xD025        ;25 , D0
+0000C6 D034           00105         DATA 0xD034        ;34 , D0
+0000C8 D03E           00106         DATA 0xD03E        ;3E , D0
+MPASM  5.06                      BLOAD_PM.ASM   10-15-2007  15:16:48         PAGE  3
+
+Uart bootloader firmware
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000CA D048           00107         DATA 0xD048        ;48 , D0
+0000CC D019           00108         DATA 0xD019        ;19 , D0
+0000CE D052           00109         DATA 0xD052        ;52 , D0
+0000D0 00FF           00110         DATA 0x00FF        ;FF , 00
+0000D2 50EE           00111         DATA 0x50EE        ;EE , 50
+0000D4 02AF           00112         DATA 0x02AF        ;AF , 02
+0000D6 46F4           00113         DATA 0x46F4        ;F4 , 46
+0000D8 46F4           00114         DATA 0x46F4        ;F4 , 46
+0000DA 0EFC           00115         DATA 0x0EFC        ;FC , 0E
+0000DC 16F4           00116         DATA 0x16F4        ;F4 , 16
+0000DE 46F3           00117         DATA 0x46F3        ;F3 , 46
+0000E0 46F3           00118         DATA 0x46F3        ;F3 , 46
+0000E2 0E03           00119         DATA 0x0E03        ;03 , 0E
+0000E4 14F3           00120         DATA 0x14F3        ;F3 , 14
+0000E6 24F4           00121         DATA 0x24F4        ;F4 , 24
+0000E8 6EA8           00122         DATA 0x6EA8        ;A8 , 6E
+0000EA 0E04           00123         DATA 0x0E04        ;04 , 0E
+0000EC 6EA6           00124         DATA 0x6EA6        ;A6 , 6E
+0000EE D878           00125         DATA 0xD878        ;78 , D8
+0000F0 B2A6           00126         DATA 0xB2A6        ;A6 , B2
+0000F2 D7FE           00127         DATA 0xD7FE        ;FE , D7
+0000F4 0E0C           00128         DATA 0x0E0C        ;0C , 0E
+0000F6 6E0A           00129         DATA 0x6E0A        ;0A , 6E
+0000F8 0E00           00130         DATA 0x0E00        ;00 , 0E
+0000FA 6E0B           00131         DATA 0x6E0B        ;0B , 6E
+0000FC 0E04           00132         DATA 0x0E04        ;04 , 0E
+0000FE D045           00133         DATA 0xD045        ;45 , D0
+                      00134 
+000100 0009           00135         DATA 0x0009        ;09 , 00
+000102 CFF5           00136         DATA 0xCFF5        ;F5 , CF
+000104 FFEE           00137         DATA 0xFFEE        ;EE , FF
+000106 2E01           00138         DATA 0x2E01        ;01 , 2E
+000108 D7FB           00139         DATA 0xD7FB        ;FB , D7
+00010A 5009           00140         DATA 0x5009        ;09 , 50
+00010C 0F05           00141         DATA 0x0F05        ;05 , 0F
+00010E D03D           00142         DATA 0xD03D        ;3D , D0
+000110 0EF8           00143         DATA 0x0EF8        ;F8 , 0E
+000112 16F6           00144         DATA 0x16F6        ;F6 , 16
+000114 0E08           00145         DATA 0x0E08        ;08 , 0E
+000116 CFEE           00146         DATA 0xCFEE        ;EE , CF
+000118 FFF5           00147         DATA 0xFFF5        ;F5 , FF
+00011A 000D           00148         DATA 0x000D        ;0D , 00
+00011C 2EE8           00149         DATA 0x2EE8        ;E8 , 2E
+00011E D7FB           00150         DATA 0xD7FB        ;FB , D7
+000120 000A           00151         DATA 0x000A        ;0A , 00
+000122 0E84           00152         DATA 0x0E84        ;84 , 0E
+000124 6EA6           00153         DATA 0x6EA6        ;A6 , 6E
+000126 D85C           00154         DATA 0xD85C        ;5C , D8
+000128 0009           00155         DATA 0x0009        ;09 , 00
+00012A 2E01           00156         DATA 0x2E01        ;01 , 2E
+00012C D7F1           00157         DATA 0xD7F1        ;F1 , D7
+00012E D02C           00158         DATA 0xD02C        ;2C , D0
+000130 0E94           00159         DATA 0x0E94        ;94 , 0E
+MPASM  5.06                      BLOAD_PM.ASM   10-15-2007  15:16:48         PAGE  4
+
+Uart bootloader firmware
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000132 6EA6           00160         DATA 0x6EA6        ;A6 , 6E
+000134 D855           00161         DATA 0xD855        ;55 , D8
+000136 0E40           00162         DATA 0x0E40        ;40 , 0E
+000138 26F6           00163         DATA 0x26F6        ;F6 , 26
+00013A 6AE8           00164         DATA 0x6AE8        ;E8 , 6A
+00013C 22F7           00165         DATA 0x22F7        ;F7 , 22
+00013E 22F8           00166         DATA 0x22F8        ;F8 , 22
+000140 2E01           00167         DATA 0x2E01        ;01 , 2E
+000142 D7F6           00168         DATA 0xD7F6        ;F6 , D7
+000144 D021           00169         DATA 0xD021        ;21 , D0
+000146 6AA6           00170         DATA 0x6AA6        ;A6 , 6A
+000148 80A6           00171         DATA 0x80A6        ;A6 , 80
+00014A CFA8           00172         DATA 0xCFA8        ;A8 , CF
+00014C FFEE           00173         DATA 0xFFEE        ;EE , FF
+00014E 4AA9           00174         DATA 0x4AA9        ;A9 , 4A
+000150 2AAA           00175         DATA 0x2AAA        ;AA , 2A
+000152 2E01           00176         DATA 0x2E01        ;01 , 2E
+000154 D7F8           00177         DATA 0xD7F8        ;F8 , D7
+000156 5009           00178         DATA 0x5009        ;09 , 50
+000158 0F05           00179         DATA 0x0F05        ;05 , 0F
+00015A D017           00180         DATA 0xD017        ;17 , D0
+00015C CFEE           00181         DATA 0xCFEE        ;EE , CF
+00015E FFA8           00182         DATA 0xFFA8        ;A8 , FF
+000160 0E04           00183         DATA 0x0E04        ;04 , 0E
+000162 6EA6           00184         DATA 0x6EA6        ;A6 , 6E
+000164 D83D           00185         DATA 0xD83D        ;3D , D8
+000166 B2A6           00186         DATA 0xB2A6        ;A6 , B2
+000168 D7FE           00187         DATA 0xD7FE        ;FE , D7
+00016A 4AA9           00188         DATA 0x4AA9        ;A9 , 4A
+00016C 2AAA           00189         DATA 0x2AAA        ;AA , 2A
+00016E 2E01           00190         DATA 0x2E01        ;01 , 2E
+000170 D7F5           00191         DATA 0xD7F5        ;F5 , D7
+000172 D00A           00192         DATA 0xD00A        ;0A , D0
+000174 0EC4           00193         DATA 0x0EC4        ;C4 , 0E
+000176 6EA6           00194         DATA 0x6EA6        ;A6 , 6E
+000178 CFEE           00195         DATA 0xCFEE        ;EE , CF
+00017A FFF5           00196         DATA 0xFFF5        ;F5 , FF
+00017C 000C           00197         DATA 0x000C        ;0C , 00
+00017E D830           00198         DATA 0xD830        ;30 , D8
+000180 0009           00199         DATA 0x0009        ;09 , 00
+000182 2E01           00200         DATA 0x2E01        ;01 , 2E
+000184 D7F7           00201         DATA 0xD7F7        ;F7 , D7
+000186 D000           00202         DATA 0xD000        ;00 , D0
+000188 0E01           00203         DATA 0x0E01        ;01 , 0E
+00018A 6E01           00204         DATA 0x6E01        ;01 , 6E
+00018C 0E0F           00205         DATA 0x0E0F        ;0F , 0E
+00018E D81B           00206         DATA 0xD81B        ;1B , D8
+000190 D81A           00207         DATA 0xD81A        ;1A , D8
+000192 6A00           00208         DATA 0x6A00        ;00 , 6A
+000194 EE00           00209         DATA 0xEE00        ;00 , EE
+000196 F008           00210         DATA 0xF008        ;08 , F0
+000198 50EE           00211         DATA 0x50EE        ;EE , 50
+00019A 2600           00212         DATA 0x2600        ;00 , 26
+MPASM  5.06                      BLOAD_PM.ASM   10-15-2007  15:16:48         PAGE  5
+
+Uart bootloader firmware
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00019C D808           00213         DATA 0xD808        ;08 , D8
+00019E 2E01           00214         DATA 0x2E01        ;01 , 2E
+0001A0 D7FB           00215         DATA 0xD7FB        ;FB , D7
+0001A2 6C00           00216         DATA 0x6C00        ;00 , 6C
+0001A4 5000           00217         DATA 0x5000        ;00 , 50
+0001A6 D803           00218         DATA 0xD803        ;03 , D8
+0001A8 0E04           00219         DATA 0x0E04        ;04 , 0E
+0001AA D80D           00220         DATA 0xD80D        ;0D , D8
+0001AC D746           00221         DATA 0xD746        ;46 , D7
+0001AE 6E05           00222         DATA 0x6E05        ;05 , 6E
+0001B0 0A0F           00223         DATA 0x0A0F        ;0F , 0A
+0001B2 E006           00224         DATA 0xE006        ;06 , E0
+0001B4 5005           00225         DATA 0x5005        ;05 , 50
+0001B6 0A04           00226         DATA 0x0A04        ;04 , 0A
+0001B8 E003           00227         DATA 0xE003        ;03 , E0
+0001BA 5005           00228         DATA 0x5005        ;05 , 50
+0001BC 0A05           00229         DATA 0x0A05        ;05 , 0A
+0001BE E102           00230         DATA 0xE102        ;02 , E1
+0001C0 0E05           00231         DATA 0x0E05        ;05 , 0E
+0001C2 D801           00232         DATA 0xD801        ;01 , D8
+0001C4 5005           00233         DATA 0x5005        ;05 , 50
+0001C6 0004           00234         DATA 0x0004        ;04 , 00
+0001C8 A89E           00235         DATA 0xA89E        ;9E , A8
+0001CA D7FE           00236         DATA 0xD7FE        ;FE , D7
+0001CC 6EAD           00237         DATA 0x6EAD        ;AD , 6E
+0001CE 0012           00238         DATA 0x0012        ;12 , 00
+0001D0 0004           00239         DATA 0x0004        ;04 , 00
+0001D2 B2AB           00240         DATA 0xB2AB        ;AB , B2
+0001D4 00FF           00241         DATA 0x00FF        ;FF , 00
+0001D6 AA9E           00242         DATA 0xAA9E        ;9E , AA
+0001D8 D7FE           00243         DATA 0xD7FE        ;FE , D7
+0001DA 50AE           00244         DATA 0x50AE        ;AE , 50
+0001DC 6E04           00245         DATA 0x6E04        ;04 , 6E
+0001DE 0012           00246         DATA 0x0012        ;12 , 00
+0001E0 0004           00247         DATA 0x0004        ;04 , 00
+0001E2 0E55           00248         DATA 0x0E55        ;55 , 0E
+0001E4 6EA7           00249         DATA 0x6EA7        ;A7 , 6E
+0001E6 0EAA           00250         DATA 0x0EAA        ;AA , 0E
+0001E8 6EA7           00251         DATA 0x6EA7        ;A7 , 6E
+0001EA 82A6           00252         DATA 0x82A6        ;A6 , 82
+0001EC 0000           00253         DATA 0x0000        ;00 , 00
+0001EE 0012           00254         DATA 0x0012        ;12 , 00
+0001F0 FFFF           00255         DATA 0xFFFF        ;FF , FF
+0001F2 FFFF           00256         DATA 0xFFFF        ;FF , FF
+0001F4 FFFF           00257         DATA 0xFFFF        ;FF , FF
+0001F6 A09E           00258         DATA 0xA09E        ;9E , A0
+0001F8 D708           00259         DATA 0xD708        ;08 , D7
+0001FA 909E           00260         DATA 0x909E        ;9E , 90
+0001FC 2E06           00261         DATA 0x2E06        ;06 , 2E
+0001FE D705           00262         DATA 0xD705        ;05 , D7
+                      00263 
+                      00264 
+                      00265 ;----------------------------------------------------------------------------------------------
+MPASM  5.06                      BLOAD_PM.ASM   10-15-2007  15:16:48         PAGE  6
+
+Uart bootloader firmware
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00266 ;                                               Reserve EEPROM for bootloader
+                      00267 ;---------------------------------------------------------------------------------------------- 
+                      00268 
+                      00269 
+                      00270                 org 0xF000FE            ;PIC18F4320 has 256 bytes EEPROM
+                      00271         
+F000FE 4466           00272                 DE 0x66,0x44                     
+                      00273                                          
+                      00274 ;----------------------------------------------------------------------------------------------
+                      00275 
+                      00276 
+                      00277         END
+MPASM  5.06                      BLOAD_PM.ASM   10-15-2007  15:16:48         PAGE  7
+
+Uart bootloader firmware
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__18F4320                         00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

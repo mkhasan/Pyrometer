@@ -1,0 +1,83 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+ACK::0	D:\projects\90614\web\C\source\main.h	37;"	d	line:37
+Ack_bit	D:\projects\90614\web\C\source\SMBus.c	63;"	l	line:63
+Ack_bit	D:\projects\90614\web\C\source\SMBus.c	99;"	l	line:99
+BOOTLOADER	D:\projects\90614\web\C\source\main.h	11;"	d	line:11
+BitPosition	D:\projects\90614\web\C\source\CRC8.c	14;"	l	line:14
+Bit_Counter	D:\projects\90614\web\C\source\SMBus.c	123;"	l	line:123
+Bit_counter	D:\projects\90614\web\C\source\SMBus.c	62;"	l	line:62
+Boot	D:\projects\90614\web\C\source\BLOAD_PM.asm	4;"	l	line:4
+CalcTemp	D:\projects\90614\web\C\source\main.h	59;"	p	line:59	signature:(unsigned int value)
+DEFAULT_SA::0x5A	D:\projects\90614\web\C\source\main.h	42;"	d	line:42
+DEL1SEC::100000	D:\projects\90614\web\C\source\main.h	48;"	d	line:48
+DEL200ms::18500	D:\projects\90614\web\C\source\main.h	50;"	d	line:50
+DEL80ms::7400	D:\projects\90614\web\C\source\main.h	49;"	d	line:49
+DummyCommand	D:\projects\90614\web\C\source\main.h	58;"	p	line:58	signature:(unsigned char byte)
+EEPROM_Access::0x20	D:\projects\90614\web\C\source\main.h	44;"	d	line:44
+HIGHLEV::3	D:\projects\90614\web\C\source\SMBus.h	6;"	d	line:6
+LOWLEV::1	D:\projects\90614\web\C\source\SMBus.h	7;"	d	line:7
+MCUinit	D:\projects\90614\web\C\source\main.h	55;"	p	line:55	signature:(void)
+MemRead	D:\projects\90614\web\C\source\main.h	56;"	p	line:56	signature:(unsigned char SlaveAddress,unsigned char command)
+NACK::1	D:\projects\90614\web\C\source\main.h	38;"	d	line:38
+PEC_calculation	D:\projects\90614\web\C\source\CRC8.c	11;"	f	line:11	signature:(unsigned char pec[])
+PEC_calculation	D:\projects\90614\web\C\source\main.h	66;"	p	line:66	signature:(unsigned char pec[])
+RAM_Access::0x00	D:\projects\90614\web\C\source\main.h	43;"	d	line:43
+RAM_Tobj1::0x07	D:\projects\90614\web\C\source\main.h	45;"	d	line:45
+RND::6	D:\projects\90614\web\C\source\c018i.c	18;"	d	line:18	file:
+RX_buffer	D:\projects\90614\web\C\source\SMBus.c	122;"	l	line:122
+RX_byte	D:\projects\90614\web\C\source\SMBus.c	120;"	f	line:120	signature:(unsigned char ack_nack)
+RX_byte	D:\projects\90614\web\C\source\SMBus.h	14;"	p	line:14	signature:(unsigned char ack_nack)
+RX_byte	D:\projects\90614\web\C\source\main.h	64;"	p	line:64	signature:(unsigned char ack_nack)
+Receive_bit	D:\projects\90614\web\C\source\SMBus.c	97;"	f	line:97	signature:(void)
+Receive_bit	D:\projects\90614\web\C\source\SMBus.h	16;"	p	line:16	signature:(void)
+SA::0x00	D:\projects\90614\web\C\source\main.h	41;"	d	line:41
+START_bit	D:\projects\90614\web\C\source\SMBus.c	17;"	f	line:17	signature:(void)
+START_bit	D:\projects\90614\web\C\source\SMBus.h	11;"	p	line:11	signature:(void)
+START_bit	D:\projects\90614\web\C\source\main.h	61;"	p	line:61	signature:(void)
+STOP_bit	D:\projects\90614\web\C\source\SMBus.c	41;"	f	line:41	signature:(void)
+STOP_bit	D:\projects\90614\web\C\source\SMBus.h	12;"	p	line:12	signature:(void)
+STOP_bit	D:\projects\90614\web\C\source\main.h	62;"	p	line:62	signature:(void)
+SendRequest	D:\projects\90614\web\C\source\main.h	57;"	p	line:57	signature:(void)
+TBUF::2	D:\projects\90614\web\C\source\main.h	51;"	d	line:51
+TX_byte	D:\projects\90614\web\C\source\SMBus.c	60;"	f	line:60	signature:(unsigned char Tx_buffer)
+TX_byte	D:\projects\90614\web\C\source\SMBus.h	13;"	p	line:13	signature:(unsigned char Tx_buffer)
+TX_byte	D:\projects\90614\web\C\source\main.h	63;"	p	line:63	signature:(unsigned char Tx_buffer)
+_SCL::PORTCbits.RC3	D:\projects\90614\web\C\source\main.h	23;"	d	line:23
+_SCL_IO::TRISCbits.TRISC3	D:\projects\90614\web\C\source\main.h	21;"	d	line:21
+_SDA::PORTCbits.RC4	D:\projects\90614\web\C\source\main.h	24;"	d	line:24
+_SDA_IO::TRISCbits.TRISC4	D:\projects\90614\web\C\source\main.h	22;"	d	line:22
+_do_cinit	D:\projects\90614\web\C\source\c018i.c	13;"	p	line:13	file:	signature:(void)
+_entry	D:\projects\90614\web\C\source\c018i.c	10;"	p	line:10	file:	signature:(void)
+_entry	D:\projects\90614\web\C\source\c018i.c	23;"	f	line:23	signature:(void)
+_high_ISR	D:\projects\90614\web\C\source\main.c	38;"	f	line:38	signature:(void)
+_startup	D:\projects\90614\web\C\source\c018i.c	11;"	p	line:11	file:	signature:(void)
+bit_clr::(var,bitno)((var)&=~(1<<(bitno	D:\projects\90614\web\C\source\main.h	16;"	d	line:16
+bit_out	D:\projects\90614\web\C\source\SMBus.c	64;"	l	line:64
+bit_set::(var,bitno)((var)|=1<<(bitno))	D:\projects\90614\web\C\source\main.h	14;"	d	line:14
+crc	D:\projects\90614\web\C\source\CRC8.c	13;"	l	line:13
+delay	D:\projects\90614\web\C\source\SMBus.h	18;"	p	line:18	signature:( unsigned long i)
+delay	D:\projects\90614\web\C\source\delay.c	17;"	f	line:17	signature:( unsigned long i)
+delay	D:\projects\90614\web\C\source\delay.h	6;"	p	line:6	signature:( unsigned long i)
+delay	D:\projects\90614\web\C\source\main.h	65;"	p	line:65	signature:( unsigned long i)
+high_isr	D:\projects\90614\web\C\source\main.h	53;"	p	line:53	signature:(void)
+i	D:\projects\90614\web\C\source\CRC8.c	16;"	l	line:16
+j	D:\projects\90614\web\C\source\CRC8.c	17;"	l	line:17
+low_isr	D:\projects\90614\web\C\source\main.h	54;"	p	line:54	signature:(void)
+mSCL_HIGH::_SCL=1;_SCL_IO=0;	D:\projects\90614\web\C\source\main.h	32;"	d	line:32
+mSCL_HIGH::_SCL_IO=1;	D:\projects\90614\web\C\source\main.h	30;"	d	line:30
+mSCL_LOW::_SCL=0;_SCL_IO=0;	D:\projects\90614\web\C\source\main.h	35;"	d	line:35
+mSDA_HIGH::_SDA_IO=1;	D:\projects\90614\web\C\source\main.h	26;"	d	line:26
+mSDA_LOW::_SDA=0;_SDA_IO=0;	D:\projects\90614\web\C\source\main.h	27;"	d	line:27
+main	D:\projects\90614\web\C\source\c018i.c	8;"	p	line:8	file:	signature:(void)
+send_bit	D:\projects\90614\web\C\source\SMBus.c	81;"	f	line:81	signature:(unsigned char bit_out)
+send_bit	D:\projects\90614\web\C\source\SMBus.h	15;"	p	line:15	signature:(unsigned char bit_out)
+shift	D:\projects\90614\web\C\source\CRC8.c	15;"	l	line:15
+temp	D:\projects\90614\web\C\source\CRC8.c	18;"	l	line:18
+testbit::(data,bitno)((data>>bitno)&0x0	D:\projects\90614\web\C\source\main.h	18;"	d	line:18

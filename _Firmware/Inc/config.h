@@ -19,9 +19,14 @@
 #define SEG_G_PIN GPIO_PIN_15
 #define SEG_P_PIN GPIO_PIN_9
 
+#define ADC_BUFFER_LENGTH 256
 
+#define PYROMETER_PIN GPIO_PIN_2
+#define PYROMETER_PORT GPIOA
 
+void _Error_Handler(char *, int);
 
+#define Error_Handler() _Error_Handler(__FILE__, __LINE__)
 
 
 #endif
