@@ -12,7 +12,7 @@ static void MX_I2C2_Init(void);
 
 static int ret;
 
-static int value = 0;
+
 
 static int sec = 0;
 
@@ -39,13 +39,15 @@ int delay = 1000;
 int turn=0;
 
 uint32_t 	data;		  			//Contains data value	
-float			t;						//Contains calculated temperature in degrees Celsius	
+float			tempCelcius;						//Contains calculated temperature in degrees Celsius	
 
 uint8_t count = 0;
 
 uint8_t success = 0;
 uint8_t W_Success = 0;
 
+
+#define DISPLAY_ONLY 1
 
 #define EPROM_ADDR 0x02
 
@@ -82,6 +84,7 @@ uint8_t recv[10];
 #define ACK     0
 #define        NACK 1
 
+#define DIGITS_AFTER_DEC 2
 
 void send_bit(uint8_t bit_out);
 uint8_t Receive_bit(void);
@@ -92,6 +95,7 @@ uint8_t PEC_calculation(uint8_t pec[]);
 void TestIt();
 
 void SendRequest(void);
+uint32_t MemRead(uint8_t SlaveAddress,uint8_t command);
 
 void MCUinit(void)
 {
@@ -114,11 +118,14 @@ void Nop() {
   asm("NOP");
 }
 
+char val[4] = {'0', '0', '0', '0'};
+
+char val1[4];
 
 ////////////////////////////////////////////////
 
 
-
+uint32_t value = 0;
 int main() {
   
   HAL_Init();
@@ -135,96 +142,102 @@ int main() {
   
   MX_GPIO_Init();
   
+  MX_TIM2_Init();
   ///////////////////////////////
-  
-  TestIt();
-  
-  
-  
-  ///////////////////////////////
-  ret = 10;
-  
+
+  uint8_t 	SlaveAddress; 			//Contains device address
+  uint8_t	command;	  			//Contains the access command
+
+
+          
+  MCUinit();						  		//MCU initialization
+  SlaveAddress=SA<<1;						//Set device address
+  command=RAM_Access|RAM_Tobj1; 	        //Form RAM access command + RAM address 			
+
+  //SendRequest();							//Switch to SMBus mode - this is need if module is in PWM mode only
+  //DummyCommand(SlaveAddress);				//This is need if Request Command is sent even when the module is in SMBus mode
+  //delay(DEL200ms);						//Wait after POR,Tvalid=0.15s 
+  HAL_Delay(200);
+
 
   
-  
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_RESET);
-  
-  ret = 20;
-  
-  HAL_Delay(80);
-  
-  
-  ret = 30;
-  
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
-
-  
-  MX_I2C2_Init();
-  
-  
-  
-  
-  //MX_TIM2_Init();
-  
-  buffer[0] = cmd;
-  
-  ret = -10;
-  
-  
-  HAL_Delay(100);
-  //HAL_I2C_ClearBusyFlagErrata_2_14_7(&hi2c2);
- 
-  
-
- 
-  
-  
-  while(1) {
-    
-    HAL_Delay(50);
- 
-    ret = -5;
-    
-    ret = HAL_I2C_Master_Transmit(&hi2c2, slaveAddr, buffer, 1, 100);
-    
-    if(ret != 0) {
-      while(1) {
-      }
-    }
-    
-  
-    ret = -2;
-    
-    HAL_Delay(50); 
-    
-    ret = HAL_I2C_Master_Receive(&hi2c2, slaveAddr, recv, 2, 100);
-    
-  }
+  data = 0;
   
   HAL_TIM_Base_Start_IT(&htim2); 
   
-  ConfigureADC();
+  uint32_t temp = 0;
+  
+#if DISPLAY_ONLY == 0  
+  
+  //TestIt();
+  
+ 
+    
+    while(1)
+    {
+        if(timer2Tick >= 1000 ) {
+      
+      temp = value;
+      val[0] = '0' + temp / 1000;  
+      temp = temp % 1000;
+      
+      val[1] = '0' + temp/100;
+      temp = temp % 100;
+      
+      val[2] = '0' + temp/10;
+      temp = temp % 10;
+      
+      val[3] = '0' + temp;
+      
+      timer2Tick = 0;
+      value = (value+1) % 10000;
+      
+      if(1) {
+        data=MemRead(SlaveAddress,command); //Read memory
+            
+        tempCelcius=CalcTemp(data);					//Calculate temperature
+      }
+            
+            
+     if(shift >= 5) {
+    
+      Display(turn+1, val[turn]);
+      turn = (turn+1)%4;
+      shift = 0;
+      
+      
+    } 
+            
+
+                           
+                      
+      //      data=MemRead(SlaveAddress,command); //Read memory
+            
+        //    tempCelcius=CalcTemp(data);					//Calculate temperature
+            
+            
+        //    HAL_Delay(1000);
+            
+        //    count ++;
+            
+            
+            
+    } 
+    
+    }
+    
+#endif
   
   
-  if ((ret=HAL_ADC_Start_DMA(&g_AdcHandle, g_ADCBuffer, ADC_BUFFER_LENGTH)) != HAL_OK) {
-    Error_Handler();
-   }
   
-  buffer[0] = cmd;
+  ///////////////////////////////
   
-  ret = HAL_I2C_Master_Transmit(&hi2c2, slaveAddr, buffer, 1, 100);
   
-  HAL_Delay(20);
   
-  HAL_I2C_Master_Receive(&hi2c2, slaveAddr, recv, 2, 100);
+   
   
-  while(1) {
-  }
   
-  return 0;
   
-  char val[4] = {'0', '0', '0', '0'};
-  int temp;
   
   
   
@@ -248,6 +261,17 @@ int main() {
       
       timer2Tick = 0;
       value = (value+1) % 10000;
+      
+      if(1) {
+        data=MemRead(SlaveAddress,command); //Read memory
+            
+        tempCelcius=CalcTemp(data);					//Calculate temperature
+      }
+            
+            
+      
+            
+
     }
     
     //Display(turn, '0');
@@ -444,9 +468,11 @@ void _Error_Handler(char * file, int line)
 void MX_GPIO_Init(void)
 {
 
+
+  
   GPIO_InitTypeDef GPIO_InitStruct;
   
-
+//#if DISPLAY_ONLY == 0
   /* GPIO Ports Clock Enable */
   //__HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
@@ -459,9 +485,13 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
   
   
-  //| GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11,
+//#else 
+  
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  //__HAL_RCC_GPIOB_CLK_ENABLE();
 
-  /*
+
+  
   HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG1_CTRL_PIN | DIG2_CTRL_PIN | DIG3_CTRL_PIN | DIG4_CTRL_PIN, GPIO_PIN_SET);
 
   GPIO_InitStruct.Pin = DIG1_CTRL_PIN | DIG2_CTRL_PIN | DIG3_CTRL_PIN | DIG4_CTRL_PIN;
@@ -485,7 +515,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(SEG_CDEP_PORT, &GPIO_InitStruct);
 
 
-*/
+//#endif
   
 }
 
@@ -1239,7 +1269,7 @@ void TestIt() {
                 
 		data=MemRead(SlaveAddress,command); //Read memory
                 
-                t=CalcTemp(data);					//Calculate temperature
+                tempCelcius=CalcTemp(data);					//Calculate temperature
                 
                 
                 HAL_Delay(1000);
@@ -1255,3 +1285,15 @@ void TestIt() {
         }
   
 }
+
+
+uint8_t GetDigits(float t, char *val) {
+  
+  if(t <= 0.0)
+    return 0;
+  
+  
+    
+}
+
+
