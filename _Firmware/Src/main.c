@@ -84,7 +84,7 @@ uint8_t recv[10];
 #define ACK     0
 #define        NACK 1
 
-#define DIGITS_AFTER_DEC 2
+#define DIGITS_AFTER_DEC 1
 
 void send_bit(uint8_t bit_out);
 uint8_t Receive_bit(void);
@@ -96,6 +96,8 @@ void TestIt();
 
 void SendRequest(void);
 uint32_t MemRead(uint8_t SlaveAddress,uint8_t command);
+
+uint8_t GetDigits(float t, char *val);
 
 void MCUinit(void)
 {
@@ -197,6 +199,8 @@ int main() {
             
         tempCelcius=CalcTemp(data);					//Calculate temperature
       }
+      
+      
             
             
      if(shift >= 5) {
@@ -267,6 +271,8 @@ int main() {
             
         tempCelcius=CalcTemp(data);					//Calculate temperature
       }
+      
+      GetDigits(tempCelcius, val);
             
             
       
@@ -274,7 +280,7 @@ int main() {
 
     }
     
-    //Display(turn, '0');
+    
     
     if(shift >= 5) {
     
@@ -287,111 +293,6 @@ int main() {
     
     
 
-    
-    
-    /*
-      HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG2_CTRL_PIN, GPIO_PIN_RESET);
-  
-      
-        
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_A_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_F_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_G_PIN, GPIO_PIN_SET);
-
-      
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN, GPIO_PIN_RESET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_D_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_E_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_P_PIN, GPIO_PIN_SET);
-    
-    */
-  
-    /*
-    
-    if(timer2Tick >= 10) {
-      if(turn == 1) {
-        HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG2_CTRL_PIN, GPIO_PIN_RESET);
-        HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG4_CTRL_PIN, GPIO_PIN_SET);
-        HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN, GPIO_PIN_SET);
-        HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_F_PIN, GPIO_PIN_RESET);
-        
-        tick ++;
-        
-      }
-      else {   
-      
-        HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG2_CTRL_PIN, GPIO_PIN_SET);
-        HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG4_CTRL_PIN, GPIO_PIN_RESET);
-        HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN, GPIO_PIN_RESET);
-        HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_F_PIN, GPIO_PIN_SET);
-
-        
-        tick --;
-      }
-      
-      turn = 1-turn;
-      
-      timer2Tick = 0;
-      
-    }
-
-
-
-    */
-
-      
-
-
-    
-  
-    /*
-    if(value == 1) {
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_RESET);
-      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
-    }
-    
-    else {
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_RESET);
-      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
-
-    }
-    */
-    /*
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-    
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
-    
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_RESET);
-    */
-    
-    
-    
-    
-    
-    
-    /*
-    if(value == 1) {
-      HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG1_CTRL_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG2_CTRL_PIN, GPIO_PIN_RESET);
-    }
-    else {
-      HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG1_CTRL_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(DIGIT_CTRL_PORT, DIG2_CTRL_PIN, GPIO_PIN_RESET);
-
-    }
-*/
-
-    //tick = timer2Tick/100;
     
     
     
@@ -572,6 +473,8 @@ void Display(int digitNo, char val) {
   HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN | SEG_F_PIN | SEG_A_PIN | SEG_G_PIN, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN | SEG_P_PIN | SEG_D_PIN | SEG_E_PIN, GPIO_PIN_RESET);
   
+  if(digitNo == 4-DIGITS_AFTER_DEC)
+    HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_P_PIN, GPIO_PIN_SET);
   
   switch(val) {
     case '0':
@@ -1292,7 +1195,29 @@ uint8_t GetDigits(float t, char *val) {
   if(t <= 0.0)
     return 0;
   
+  uint32_t temp, value;
   
+  uint32_t factor = 1;
+  
+  for (int i=0; i<DIGITS_AFTER_DEC; i++)
+    factor *= 10;
+  
+  value = (uint32_t) factor*t;
+  
+  if(value > 9999)
+    return 0;
+  
+  temp = value;
+  val[0] = '0' + temp / 1000;  
+  temp = temp % 1000;
+  
+  val[1] = '0' + temp/100;
+  temp = temp % 100;
+  
+  val[2] = '0' + temp/10;
+  temp = temp % 10;
+  
+  val[3] = '0' + temp;
     
 }
 
