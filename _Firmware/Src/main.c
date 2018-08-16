@@ -1,15 +1,21 @@
 
 #include "stm32f1xx_hal.h"
 #include "config.h"
+#include "crc.h"
 
 I2C_HandleTypeDef hi2c2;
+UART_HandleTypeDef huart2;              // PA2 and PA3
+
 
 void SystemClock_Config(void);
 void _Error_Handler(char * file, int line);
 void MX_GPIO_Init(void);
+void MX_USART2_UART_Init(void);
+
 
 static void MX_I2C2_Init(void);
 
+static void USART_ClearITPendingBit(UART_HandleTypeDef* USARTx, uint16_t USART_IT);
 static int ret;
 
 
@@ -18,7 +24,7 @@ static int sec = 0;
 
 static int tick = 0;
 
-TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 
 static int timer2Tick = 0;
 static int shift = 0;
@@ -29,7 +35,7 @@ uint32_t g_ADCBuffer[ADC_BUFFER_LENGTH];
 DMA_HandleTypeDef g_DmaHandle;
 ADC_HandleTypeDef g_AdcHandle;
 
-void MX_TIM2_Init(void);
+void MX_TIM3_Init(void);
 void Display(int digitNo, char val);
 
 void ConfigureADC();
@@ -38,7 +44,7 @@ int delay = 1000;
 
 int turn=0;
 
-uint32_t 	data;		  			//Contains data value	
+uint32_t 	pyroMeterData;		  			//Contains data value	
 float			tempCelcius;						//Contains calculated temperature in degrees Celsius	
 
 uint8_t count = 0;
@@ -47,7 +53,8 @@ uint8_t success = 0;
 uint8_t W_Success = 0;
 
 
-#define DISPLAY_ONLY 1
+
+
 
 #define EPROM_ADDR 0x02
 
@@ -57,7 +64,7 @@ uint8_t W_Success = 0;
 #define EEPROM_Access	0x20	// EEPROM access command
 #define RAM_Tobj1		0x07	// To1 address in the eeprom
 
-const uint8_t addr = EPROM_ADDR;
+
 
 
 const uint8_t cmd = (0x20 | EPROM_ADDR);
@@ -90,6 +97,35 @@ void send_bit(uint8_t bit_out);
 uint8_t Receive_bit(void);
 
 float CalcTemp(uint32_t value);
+
+uint8_t GetDigits(float t, char *val);
+
+
+static char val[4] = {'0', '0', '0', '0'};
+
+static char val1[4];
+
+
+uint32_t myAddr;
+
+
+int sentBufferEmpty = 1;
+
+int transferErrorCount = 0;
+int writeErrorCount = 0;
+int readErrorCount = 0;
+
+int transferCallback = 0;
+int readCallback = 0;
+
+uint32_t errCode[256];
+
+int lastByte = 0;
+
+int sendData = 0;
+
+int dataReady = 0;
+
 uint8_t PEC_calculation(uint8_t pec[]);
 
 void TestIt();
@@ -97,7 +133,7 @@ void TestIt();
 void SendRequest(void);
 uint32_t MemRead(uint8_t SlaveAddress,uint8_t command);
 
-uint8_t GetDigits(float t, char *val);
+
 
 void MCUinit(void)
 {
@@ -120,17 +156,21 @@ void Nop() {
   asm("NOP");
 }
 
-char val[4] = {'0', '0', '0', '0'};
 
-char val1[4];
 
 ////////////////////////////////////////////////
 
 
 uint32_t value = 0;
+
+int sent = 0;
+
+
 int main() {
   
   HAL_Init();
+  
+  
 
   /* USER CODE BEGIN Init */
 
@@ -140,11 +180,17 @@ int main() {
   SystemClock_Config();
 
  
-  
+  if(crcInit(POLYNOM4, POLYNOM8) != 0)
+    Error_Handler();
   
   MX_GPIO_Init();
   
-  MX_TIM2_Init();
+  MX_USART2_UART_Init();
+  
+  
+  MX_TIM3_Init();
+  
+  
   ///////////////////////////////
 
   uint8_t 	SlaveAddress; 			//Contains device address
@@ -163,82 +209,27 @@ int main() {
 
 
   
-  data = 0;
+  pyroMeterData = 0;
   
-  HAL_TIM_Base_Start_IT(&htim2); 
+  HAL_TIM_Base_Start_IT(&htim3);                
   
   uint32_t temp = 0;
   
-#if DISPLAY_ONLY == 0  
   
-  //TestIt();
+  /////////  UART2  /////////////
   
- 
-    
-    while(1)
-    {
-        if(timer2Tick >= 1000 ) {
-      
-      temp = value;
-      val[0] = '0' + temp / 1000;  
-      temp = temp % 1000;
-      
-      val[1] = '0' + temp/100;
-      temp = temp % 100;
-      
-      val[2] = '0' + temp/10;
-      temp = temp % 10;
-      
-      val[3] = '0' + temp;
-      
-      timer2Tick = 0;
-      value = (value+1) % 10000;
-      
-      if(1) {
-        data=MemRead(SlaveAddress,command); //Read memory
-            
-        tempCelcius=CalcTemp(data);					//Calculate temperature
-      }
-      
-      
-            
-            
-     if(shift >= 5) {
-    
-      Display(turn+1, val[turn]);
-      turn = (turn+1)%4;
-      shift = 0;
-      
-      
-    } 
-            
+  rs485_Init();
+  
+  
+  __HAL_UART_DISABLE_IT(&huart2, UART_IT_RXNE);
+  __HAL_UART_DISABLE_IT(&huart2, UART_IT_TC);
 
-                           
-                      
-      //      data=MemRead(SlaveAddress,command); //Read memory
-            
-        //    tempCelcius=CalcTemp(data);					//Calculate temperature
-            
-            
-        //    HAL_Delay(1000);
-            
-        //    count ++;
-            
-            
-            
-    } 
-    
-    }
-    
-#endif
-  
-  
+ 
+  myAddr = GetAddr();
   
   ///////////////////////////////
   
-  
-  
-   
+    
   
   
   
@@ -267,9 +258,9 @@ int main() {
       value = (value+1) % 10000;
       
       if(1) {
-        data=MemRead(SlaveAddress,command); //Read memory
+        pyroMeterData=MemRead(SlaveAddress,command); //Read memory
             
-        tempCelcius=CalcTemp(data);					//Calculate temperature
+        tempCelcius=CalcTemp(pyroMeterData);					//Calculate temperature
       }
       
       GetDigits(tempCelcius, val);
@@ -281,19 +272,46 @@ int main() {
     }
     
     
-    
-    if(shift >= 5) {
-    
+    /*
+    if(shift >= 5) {            // should not be used here because serial comm make a delay of 100 ms 
+                                // this delay destroy the display frequency...so I moved it to HAL_TIM_PeriodElapsedCallback
       Display(turn+1, val[turn]);
       turn = (turn+1)%4;
       shift = 0;
       
       
     }
-    
-    
 
+    */
     
+    
+    
+    if(dataReady == 0) {
+      ProcessInput();                   //   parsing incoming bytes in the serial interface
+    }
+    else
+      __NOP();
+
+    if(sentBufferEmpty == 1 && dataReady == 1) {                // dataReady indicates that data has been prepared because of the most recent request to my address
+        dataReady = 0;
+        
+        __HAL_UART_DISABLE_IT(&huart2, UART_IT_RXNE);
+        HAL_Delay(100);
+        SendData();                     // Sending current data if the request is to my addess
+    //          HAL_Delay(10);
+        sent ++;
+        
+    } else if (sentBufferEmpty && dataReady == 0 ) {
+      
+      
+      __HAL_UART_DISABLE_IT(&huart2, UART_IT_TC);
+      USART_ClearITPendingBit(&huart2, UART_IT_TC);
+      
+      RequestRecv();
+    }    
+
+
+
     
     
   }
@@ -373,9 +391,8 @@ void MX_GPIO_Init(void)
   
   GPIO_InitTypeDef GPIO_InitStruct;
   
-//#if DISPLAY_ONLY == 0
   /* GPIO Ports Clock Enable */
-  //__HAL_RCC_GPIOA_CLK_ENABLE();
+
   __HAL_RCC_GPIOB_CLK_ENABLE();
   
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10 | GPIO_PIN_11, GPIO_PIN_RESET);
@@ -386,10 +403,10 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
   
   
-//#else 
+
   
   __HAL_RCC_GPIOA_CLK_ENABLE();
-  //__HAL_RCC_GPIOB_CLK_ENABLE();
+
 
 
   
@@ -414,38 +431,69 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(SEG_CDEP_PORT, &GPIO_InitStruct);
+  
+  
+  /////////////////  for rs485 address /////////////////
+  
+  GPIO_InitStruct.Pin = ADDR_PIN_2 | ADDR_PIN_1 | ADDR_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(ADDR_LSB3_PORT, &GPIO_InitStruct);
+  
+  GPIO_InitStruct.Pin = ADDR_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(ADDR_MSB_PORT, &GPIO_InitStruct);
+  
+  
+   
+  //////////////////////////////////////////////////////
+  
+  HAL_GPIO_WritePin(RS485_ENABLE_PORT, RS485_RE_PIN | RS485_DE_PIN, GPIO_PIN_RESET);
+
+  GPIO_InitStruct.Pin = RS485_RE_PIN;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(RS485_ENABLE_PORT, &GPIO_InitStruct);
+  
+  GPIO_InitStruct.Pin = RS485_DE_PIN;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(RS485_ENABLE_PORT, &GPIO_InitStruct);
+  
+  
 
 
 //#endif
   
 }
 
-static void MX_TIM2_Init(void)
+static void MX_TIM3_Init(void)
 {
 
   TIM_ClockConfigTypeDef sClockSourceConfig;
   TIM_MasterConfigTypeDef sMasterConfig;
 
-  htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 999;
-  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 71;
-  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 999;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 71;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
 
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
 
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
@@ -455,11 +503,24 @@ static void MX_TIM2_Init(void)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-  if(htim->Instance==htim2.Instance) 
+  if(htim->Instance==htim3.Instance) 
   {
     
     timer2Tick ++;
     shift ++;
+    
+    
+    if(shift >= 5) {
+    
+      Display(turn+1, val[turn]);
+      turn = (turn+1)%4;
+      shift = 0;
+      
+      
+    }
+
+
+
   }
   
   //test =100;
@@ -1159,7 +1220,7 @@ void TestIt() {
         
         
         uint32_t value = 0xBE5B;
-        data = 0;
+        pyroMeterData = 0;
         
 	while(1)
 	{
@@ -1170,9 +1231,9 @@ void TestIt() {
                 //while(1) {
                 //}
                 
-		data=MemRead(SlaveAddress,command); //Read memory
+		pyroMeterData=MemRead(SlaveAddress,command); //Read memory
                 
-                tempCelcius=CalcTemp(data);					//Calculate temperature
+                tempCelcius=CalcTemp(pyroMeterData);					//Calculate temperature
                 
                 
                 HAL_Delay(1000);
@@ -1221,4 +1282,78 @@ uint8_t GetDigits(float t, char *val) {
     
 }
 
+void MX_USART2_UART_Init(void)
+{
 
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 9600; 
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  
+  
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if ((ret=HAL_UART_Init(&huart2)) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+}
+
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
+  
+  if(huart == &huart2)
+  {
+    
+
+      //sentBufferEmpty = 0;
+      transferCallback ++;
+      
+      sentBufferEmpty = 1;
+      
+    //__HAL_UART_DISABLE_IT(&huart1, UART_IT_TC);
+  
+      
+    
+  }
+}
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
+  
+  
+  if(sentBufferEmpty == 0)
+    writeErrorCount ++;
+  else
+    readErrorCount ++;
+  
+  errCode[transferErrorCount%256] = huart->ErrorCode;
+  transferErrorCount ++;
+  sentBufferEmpty = 1;
+  
+  
+  
+  //UART_RxAgain(huart);
+}
+
+
+
+void USART_ClearITPendingBit(UART_HandleTypeDef* USARTx, uint16_t USART_IT)
+{
+  uint16_t bitpos = 0x00, itmask = 0x00;
+  /* Check the parameters */
+  assert_param(IS_USART_ALL_PERIPH(USARTx));
+  assert_param(IS_USART_CLEAR_IT(USART_IT));
+  /* The CTS interrupt is not available for UART4 and UART5 */
+  if (USART_IT == UART_IT_CTS)
+  {
+    assert_param(IS_USART_123_PERIPH(USARTx));
+  }   
+  
+  bitpos = USART_IT >> 0x08;
+  itmask = ((uint16_t)0x01 << (uint16_t)bitpos);
+  USARTx->Instance->SR = (uint16_t)~itmask;
+}
+  
