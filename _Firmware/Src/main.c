@@ -275,10 +275,17 @@ int main() {
         tempCelcius=CalcTemp(data);					//Calculate temperature
         
         
+        //tempCelcius = - 0.0819*tempCelcius*tempCelcius + 16.075*tempCelcius-335.23;
         
-        tempCelcius = 30.0+(140.0-30.0)*(tempCelcius-32.0)/(35.5-32.0);
-        if(tempCelcius < 20.0)
-          tempCelcius = 20.0;
+        tempCelcius = -0.0809*tempCelcius*tempCelcius + 17.991*tempCelcius-498.24;
+        //tempCelcius = 30.0+(140.0-30.0)*(tempCelcius-32.0)/(35.5-32.0);
+        
+        //tempCelcius = 0.2819*tempCelcius + 77.911;
+        
+        if(tempCelcius < 30.0)
+          tempCelcius = 30.0;
+        
+        
       }
       
       GetDigits(tempCelcius, val);
