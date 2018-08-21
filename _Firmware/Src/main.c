@@ -198,6 +198,9 @@ int main() {
         data=MemRead(SlaveAddress,command); //Read memory
             
         tempCelcius=CalcTemp(data);					//Calculate temperature
+        
+        tempCelcius = 40.0;//30.0+(140.0-30.0)*(tempCelcius-32.0)/(35.5-32.0);
+        
       }
       
       
@@ -270,6 +273,12 @@ int main() {
         data=MemRead(SlaveAddress,command); //Read memory
             
         tempCelcius=CalcTemp(data);					//Calculate temperature
+        
+        
+        
+        tempCelcius = 30.0+(140.0-30.0)*(tempCelcius-32.0)/(35.5-32.0);
+        if(tempCelcius < 20.0)
+          tempCelcius = 20.0;
       }
       
       GetDigits(tempCelcius, val);

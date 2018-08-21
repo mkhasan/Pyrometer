@@ -13,14 +13,14 @@
     </Stack>
     <StLinkDriver>
         <stlinkserialNo>38080943</stlinkserialNo>
-        <stlinkfoundProbes />
+        <stlinkfoundProbes>38080943:50320367:</stlinkfoundProbes>
         <CStepIntDis>_ 0</CStepIntDis>
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
         <stlinkResetStyle>0</stlinkResetStyle>
         <stlinkResetStrategy>3</stlinkResetStrategy>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>2711861839</Checksum>
+        <Checksum>2911885220</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
