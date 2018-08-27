@@ -261,6 +261,14 @@ int main() {
         pyroMeterData=MemRead(SlaveAddress,command); //Read memory
             
         tempCelcius=CalcTemp(pyroMeterData);					//Calculate temperature
+        
+        tempCelcius = -0.0809*tempCelcius*tempCelcius + 17.991*tempCelcius-498.24;
+        //tempCelcius = 30.0+(140.0-30.0)*(tempCelcius-32.0)/(35.5-32.0);
+        
+        //tempCelcius = 0.2819*tempCelcius + 77.911;
+        
+        if(tempCelcius < 30.0)
+          tempCelcius = 30.0;
       }
       
      GetDigits(tempCelcius, val);

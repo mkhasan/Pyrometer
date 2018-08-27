@@ -1,7 +1,18 @@
-﻿  Viewer.cpp
-  Generating Code...
-  Compiling...
-  ViewerDlg.cpp
-  Generating Code...
+﻿  USB2SERIAL_W32.cpp
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(195): warning C4101: 'inx': unreferenced local variable
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(196): warning C4101: 'suffix': unreferenced local variable
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(289): warning C4101: 'i': unreferenced local variable
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(496): warning C4551: function call missing argument list
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(506): warning C4551: function call missing argument list
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(522): warning C4551: function call missing argument list
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(536): warning C4551: function call missing argument list
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(542): warning C4551: function call missing argument list
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(568): warning C4551: function call missing argument list
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(574): warning C4551: function call missing argument list
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(587): warning C4551: function call missing argument list
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(782): warning C4101: 'ix': unreferenced local variable
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(876): warning C4018: '<': signed/unsigned mismatch
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(960): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+f:\kwsa\sensors\pyrometer\pyrometer-win\viewer\usb2serial_w32.cpp(964): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Viewer.vcxproj -> F:\KWSA\sensors\Pyrometer\Pyrometer-Win\Debug\Viewer.exe
   Viewer.vcxproj -> F:\KWSA\sensors\Pyrometer\Pyrometer-Win\Debug\Viewer.pdb (Partial PDB)

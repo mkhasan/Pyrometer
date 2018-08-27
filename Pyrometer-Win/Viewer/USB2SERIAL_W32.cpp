@@ -955,11 +955,19 @@ int MY_LIB::GetDegree(uint32_t polynom) {
 
 
 float CalcTemp(unsigned long value1, unsigned long value2) {
-	float temp;
+	float tempCelcius;
 	unsigned long value = value1 << 8 | value2;
-	temp = (value*0.02) - 273.15;
+	tempCelcius = (value*0.02) - 273.15;
 
-	printf("Value is (%x %x) value %x temp %f\n", value1, value2, value, temp);
+	//printf("Value is (%x %x) value %x temp %f\n", value1, value2, value, temp);
 
-	return temp;
+	tempCelcius = -0.0809*tempCelcius*tempCelcius + 17.991*tempCelcius - 498.24;
+	//tempCelcius = 30.0+(140.0-30.0)*(tempCelcius-32.0)/(35.5-32.0);
+
+	//tempCelcius = 0.2819*tempCelcius + 77.911;
+
+	if (tempCelcius < 30.0)
+		tempCelcius = 30.0;
+
+	return tempCelcius;
 }
