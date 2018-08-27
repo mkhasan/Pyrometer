@@ -157,7 +157,7 @@ void Nop() {
 }
 
 
-
+uint8_t preCount = 10;
 ////////////////////////////////////////////////
 
 
@@ -263,7 +263,13 @@ int main() {
         tempCelcius=CalcTemp(pyroMeterData);					//Calculate temperature
       }
       
-      GetDigits(tempCelcius, val);
+     GetDigits(tempCelcius, val);
+     
+     if(preCount) {
+       val[0] = val[1] = val[2] = val[3] = '0' + (10-preCount);
+       preCount --;
+     }
+     
             
             
       
@@ -418,19 +424,19 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(DIGIT_CTRL_PORT, &GPIO_InitStruct);
   
   
-  HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN | SEG_F_PIN | SEG_A_PIN | SEG_G_PIN, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_A_PIN | SEG_B_PIN | SEG_E_PIN | SEG_F_PIN, GPIO_PIN_RESET);
 
-  GPIO_InitStruct.Pin = SEG_B_PIN | SEG_F_PIN | SEG_A_PIN | SEG_G_PIN;
+  GPIO_InitStruct.Pin = SEG_A_PIN | SEG_B_PIN | SEG_E_PIN | SEG_F_PIN;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  HAL_GPIO_Init(SEG_ABFG_PORT, &GPIO_InitStruct);
+  HAL_GPIO_Init(SEG_ABEF_PORT, &GPIO_InitStruct);
   
-  HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN | SEG_P_PIN | SEG_D_PIN | SEG_E_PIN, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN | SEG_D_PIN | SEG_G_PIN | SEG_P_PIN, GPIO_PIN_RESET);
 
-  GPIO_InitStruct.Pin = SEG_C_PIN | SEG_P_PIN | SEG_D_PIN | SEG_E_PIN;
+  GPIO_InitStruct.Pin = SEG_C_PIN | SEG_D_PIN | SEG_G_PIN | SEG_P_PIN;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  HAL_GPIO_Init(SEG_CDEP_PORT, &GPIO_InitStruct);
+  HAL_GPIO_Init(SEG_CDGP_PORT, &GPIO_InitStruct);
   
   
   /////////////////  for rs485 address /////////////////
@@ -531,59 +537,59 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 void Display(int digitNo, char val) {
   
-  HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN | SEG_F_PIN | SEG_A_PIN | SEG_G_PIN, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN | SEG_P_PIN | SEG_D_PIN | SEG_E_PIN, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_A_PIN | SEG_B_PIN | SEG_E_PIN | SEG_F_PIN, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN | SEG_D_PIN | SEG_G_PIN | SEG_P_PIN, GPIO_PIN_RESET);
   
   if(digitNo == 4-DIGITS_AFTER_DEC)
-    HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_P_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_P_PIN, GPIO_PIN_SET);
   
   switch(val) {
     case '0':
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN | SEG_F_PIN | SEG_A_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN | SEG_D_PIN | SEG_E_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_A_PIN | SEG_B_PIN | SEG_E_PIN | SEG_F_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN | SEG_D_PIN, GPIO_PIN_SET);
       break;
       
     case '1':
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_B_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN, GPIO_PIN_SET);
       break;
       
     case '2':
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_A_PIN | SEG_B_PIN | SEG_G_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_D_PIN | SEG_E_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_A_PIN | SEG_B_PIN | SEG_E_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_D_PIN | SEG_G_PIN, GPIO_PIN_SET);
       break;
       
     case '3':
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_A_PIN | SEG_B_PIN | SEG_G_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN | SEG_D_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_A_PIN | SEG_B_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN | SEG_D_PIN | SEG_G_PIN, GPIO_PIN_SET);
       break;
       
     case '4':
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN | SEG_F_PIN | SEG_G_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_B_PIN | SEG_F_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN | SEG_G_PIN, GPIO_PIN_SET);
       break;
       
     case '5':
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_A_PIN | SEG_F_PIN | SEG_G_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN | SEG_D_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_A_PIN | SEG_F_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN | SEG_D_PIN | SEG_G_PIN, GPIO_PIN_SET);
       break;
       
     case '6':
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_A_PIN | SEG_F_PIN | SEG_G_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN | SEG_D_PIN | SEG_E_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_A_PIN | SEG_E_PIN | SEG_F_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN | SEG_D_PIN | SEG_G_PIN, GPIO_PIN_SET);
       break;
       
     case '7':
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_A_PIN | SEG_F_PIN | SEG_B_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_A_PIN | SEG_B_PIN | SEG_F_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN, GPIO_PIN_SET);
       break;
     case '8':
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN | SEG_F_PIN | SEG_A_PIN | SEG_G_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN | SEG_D_PIN | SEG_E_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_A_PIN | SEG_B_PIN | SEG_E_PIN | SEG_F_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN | SEG_D_PIN | SEG_G_PIN, GPIO_PIN_SET);
       break;
     case '9':
-      HAL_GPIO_WritePin(SEG_ABFG_PORT, SEG_B_PIN | SEG_F_PIN | SEG_A_PIN | SEG_G_PIN, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(SEG_CDEP_PORT, SEG_C_PIN | SEG_D_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_ABEF_PORT, SEG_A_PIN | SEG_B_PIN | SEG_F_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SEG_CDGP_PORT, SEG_C_PIN | SEG_D_PIN | SEG_G_PIN, GPIO_PIN_SET);
       break;
       
       
